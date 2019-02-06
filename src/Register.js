@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {
-  Form, Input, Button,
+  Form, Input, Button, message
 } from 'antd';
 
 class RegistrationForm extends React.Component {
@@ -15,6 +15,27 @@ class RegistrationForm extends React.Component {
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        // send request
+        fetch('https://around-75015.appspot.com/api/v1/signup', {
+          method: 'POST',
+          body: JSON.stringify({
+            username: values.username,
+            password: values.password,
+          }),
+        }).then((response) => {
+          if(response.ok){
+            return response.text();
+          }
+          throw new Error(response.statusText);
+        })
+        .then((data) => {
+          console.log(data);
+          message.success('Registration Succeed!');
+        })
+        .catch((e) => {
+          console.log(e);
+          message.error('Registration Failed!');
+        });
       }
     });
   }

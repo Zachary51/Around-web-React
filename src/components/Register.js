@@ -1,8 +1,6 @@
 import React from 'react';
-
-import {
-  Form, Input, Button, message
-} from 'antd';
+import { Form, Input, Button, message } from 'antd';
+import { API_ROOT } from '../constants';
 
 class RegistrationForm extends React.Component {
   state = {
@@ -16,14 +14,14 @@ class RegistrationForm extends React.Component {
       if (!err) {
         console.log('Received values of form: ', values);
         // send request
-        fetch('https://around-75015.appspot.com/api/v1/signup', {
+        fetch(`${API_ROOT}/signup`, {
           method: 'POST',
           body: JSON.stringify({
             username: values.username,
             password: values.password,
           }),
         }).then((response) => {
-          if(response.ok){
+          if (response.ok) {
             return response.text();
           }
           throw new Error(response.statusText);
@@ -34,7 +32,7 @@ class RegistrationForm extends React.Component {
         })
         .catch((e) => {
           console.log(e);
-          message.error('Registration Failed!');
+          message.error('Registration Failed.');
         });
       }
     });
@@ -61,7 +59,6 @@ class RegistrationForm extends React.Component {
     }
     callback();
   }
-
 
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -96,12 +93,11 @@ class RegistrationForm extends React.Component {
               label="Username"
           >
             {getFieldDecorator('username', {
-              rules: [{ required: true, message: 'Please input your username!', whitespace: true }],
+              rules: [{ required: true, message: 'Please input your username!' }],
             })(
                 <Input />
             )}
           </Form.Item>
-
           <Form.Item
               {...formItemLayout}
               label="Password"
@@ -130,7 +126,6 @@ class RegistrationForm extends React.Component {
                 <Input type="password" onBlur={this.handleConfirmBlur} />
             )}
           </Form.Item>
-
           <Form.Item {...tailFormItemLayout}>
             <Button type="primary" htmlType="submit">Register</Button>
           </Form.Item>
@@ -140,3 +135,4 @@ class RegistrationForm extends React.Component {
 }
 
 export const Register = Form.create({ name: 'register' })(RegistrationForm);
+

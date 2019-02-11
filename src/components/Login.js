@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Icon, Input, Button, message } from 'antd';
 import { API_ROOT } from '../constants';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 class NormalLoginForm extends React.Component {
   handleSubmit = (e) => {

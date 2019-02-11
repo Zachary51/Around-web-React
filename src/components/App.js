@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { TopBar } from './TopBar';
 import { Main } from './Main';
-import { TOKEN_KEY } from "../constants";
+import { TOKEN_KEY } from '../constants';
 
 class App extends Component {
   state = {
@@ -13,13 +13,17 @@ class App extends Component {
     this.setState({ isLoggedIn: true });
   }
 
+  handleLogout = () => {
+    localStorage.removeItem(TOKEN_KEY);
+    this.setState({ isLoggedIn: false });
+  }
+
   render() {
     return (
-      <div className="App">
-        <TopBar/>
-        <Main handleSuccessfulLogin={this.handleSuccessfulLogin}
-              isLoggedIn={this.state.isLoggedIn}/>
-      </div>
+        <div className="App">
+          <TopBar handleLogout={this.handleLogout} isLoggedIn={this.state.isLoggedIn} />
+          <Main handleSuccessfulLogin={this.handleSuccessfulLogin} isLoggedIn={this.state.isLoggedIn} />
+        </div>
     );
   }
 }

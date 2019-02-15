@@ -36,3 +36,7 @@ F
 src/components/Home.js,f/2/f26211afeb627356ce16431e96e36df40b415bc1
 E
 src/components/App.js,0/5/053473e2f24e57d32f5be5bef4b8a7dd7f571c70
+C
+src/styles/Home.css,1/b/1be2e564e4922cb7aa714c85a86407b98ff6b0a8
+I
+src/components/Gallery.js,c/4/c405e829859ca60807eb9a27a51f1900b90b865f
